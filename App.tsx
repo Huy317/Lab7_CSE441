@@ -58,16 +58,9 @@ const CustomerScreen = () => {
       <Stack.Screen name="Customer" component={Customer} />
       <Stack.Screen name="Add Customer" component={AddCustomer} options={({ route }) => ({ title: "Add Customer" })} />
       <Stack.Screen name="Customer Detail" component={CustomerDetail}
-        options={({ route, navigation }) => (
+        options={({ route }) => (
           {
             title: "Customer Details",
-            headerRight: () => (
-              <TouchableOpacity>
-                <Icon 
-                  name="dots-horizontal"
-                />
-              </TouchableOpacity>
-            ),
           })}
       />
     </Stack.Navigator>

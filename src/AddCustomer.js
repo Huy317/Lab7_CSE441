@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Alert, StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, TextInput, TouchableOpacity, View,Text } from "react-native";
 import { storage } from "./Storage";
 import axios from "axios";
-import { Text } from "react-native-gesture-handler";
 
 const AddCustomer = ({ navigation }) => {
     const [name, setName] = useState("");
