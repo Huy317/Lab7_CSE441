@@ -1,7 +1,7 @@
+import Icon from "@react-native-vector-icons/material-design-icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import { StyleSheet, TouchableOpacity, View, Text, FlatList } from "react-native";
 
 const Transaction = ({ navigation }) => {
     const [transactions, setTransactions] = useState([]);
@@ -51,6 +51,16 @@ const Transaction = ({ navigation }) => {
                 renderItem={({ item }) => <Item transaction={item} />}
                 keyExtractor={(item) => item.id.toString()}
             />
+            <TouchableOpacity
+                style={styles.floating}
+                onPress={() => {
+                    navigation.navigate("Add Transaction");
+                }}
+            >
+                
+                <Icon name="plus" size={40} style={{color:'white'}}/>
+            </TouchableOpacity>
+            
         </View>
     )
 }
@@ -92,4 +102,15 @@ const styles = StyleSheet.create({
         color: "#666",
         fontWeight: "bold",
     },
+        floating: {
+        position: "absolute",
+        bottom: 20,
+        right: 20,
+        backgroundColor: "#EF506B",
+        borderRadius: 50,
+        justifyContent: "center",
+        alignItems: "center",
+        width: 50,
+        height: 50,
+    }
 })

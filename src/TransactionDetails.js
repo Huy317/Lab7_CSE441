@@ -1,10 +1,26 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-gesture-handler";
+import { Alert, StyleSheet, TouchableOpacity, View,Text } from "react-native";
 
-const TransactionDetails = ({ route }) => {
+const TransactionDetails = ({ route,navigation }) => {
     const { transaction } = route.params;
+    const handleCancel=() => {
+        Alert.alert("Cancel Transaction", "Are you sure you want to cancel this transaction?", [
+            
+            {
+                text: "Confirm",
+                onPress: () => {
+                    // api call here
 
+                    Alert.alert("Success", "Transaction cancelled successfully");
+                    navigation.navigate("Transaction");
+                }
+            },
+            {
+                text: "Cancel",
+                style: "cancel"
+            },
+        ]);
+    }
     return (
         <View style={styles.container}>
             <View style={styles.box}>
@@ -54,6 +70,15 @@ const TransactionDetails = ({ route }) => {
                     </View>
                 </View>
             </View>
+
+            <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={() => {
+                    handleCancel();
+                }}
+            >
+                <Text style={[styles.redLabel, {textAlign:'center',marginTop:10}]}>Cancel transaction</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -109,4 +134,12 @@ const styles = StyleSheet.create({
         color: "#EF506B",
         
     },
+    cancelButton:{
+        borderColor: "#EF506B",
+        borderRadius: 10,
+        borderWidth: 2,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor: 'white',
+    }
 })

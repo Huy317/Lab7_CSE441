@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Touchable, TouchableOpacity, FlatList } from "react-native";
+import { StyleSheet, View, Text, Touchable, TouchableOpacity, FlatList, Alert } from "react-native";
 
 const CustomerDetail = ({ route, navigation }) => {
 
@@ -22,7 +22,32 @@ const CustomerDetail = ({ route, navigation }) => {
         console.log("Fetching customer id: ", customerId);
         fetchData();
     }, [])
-
+    const handleDelete =()=>{
+        Alert.alert("Delete Customer", "Are you sure you want to delete this customer?", [
+            
+            {
+                text: "Delete",
+                onPress: () => {
+                    // axios.delete(`https://kami-backend-5rs0.onrender.com/customers/${customerId}`)
+                    //     .then((response) => {
+                    //         console.log("Customer deleted successfully:", response.data);
+                    //         Alert.alert("Success", "Customer deleted successfully");
+                    //         navigation.navigate("Customer");
+                    //     }).catch((error) => {
+                    //         console.error("Error deleting customer:", error);
+                    //         Alert.alert("Error", "Failed to delete customer");
+                    //     });
+                    Alert.alert("Success", "Customer deleted successfully");
+                    navigation.navigate("Customer");
+                }
+            },
+            {
+                text: "Cancel",
+                style: "cancel"
+            },
+        ]
+        )
+    }
     const Item = ({ transaction }) => {
         console.log("Rendering transaction item:", transaction);
         return (
@@ -57,10 +82,14 @@ const CustomerDetail = ({ route, navigation }) => {
                 <View style={styles.buttonSection}>
                     <TouchableOpacity
                         style={styles.button}
+                        onPress={() => {
+                            navigation.navigate("Edit Customer", { customerId: customer._id });
+                        }}
                     >
                         <Text style={styles.editButtonText}>Edit</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
+                        onPress={handleDelete}
                         style={styles.button}
                     >
                         <Text style={styles.deleteButtonText}>Delete</Text>

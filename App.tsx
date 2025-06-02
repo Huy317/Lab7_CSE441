@@ -17,6 +17,8 @@ import AddCustomer from "./src/AddCustomer";
 import Transaction from "./src/Transaction";
 import TransactionDetails from "./src/TransactionDetails";
 import CustomerDetail from "./src/CustomerDetail";
+import EditCustomer from "./src/EditCustomer";
+import AddTransaction from "./src/AddTransaction";
 
 // 0373007856
 // 123
@@ -63,6 +65,7 @@ const CustomerScreen = () => {
             title: "Customer Details",
           })}
       />
+      <Stack.Screen name="Edit Customer" component={EditCustomer} options={({ route }) => ({title: "Edit Customer" })} />
     </Stack.Navigator>
   )
 }
@@ -108,6 +111,7 @@ const TransactionScreen = () => {
     >
       <Stack.Screen name="Transaction" component={Transaction} />
       <Stack.Screen name="Transaction Detail" component={TransactionDetails} options={({ route }) => ({ title: "Transaction Details" })} />
+      <Stack.Screen name="Add Transaction" component={AddTransaction} options={({route})=> ({title: "Add Transaction"})} />
     </Stack.Navigator>
   )
 }
